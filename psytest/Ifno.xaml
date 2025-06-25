@@ -1,0 +1,37 @@
+﻿<Page x:Class="psytest.Ifno"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:psytest"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Ifno">
+
+    <Grid>
+        <Label Content="Имя" HorizontalAlignment="Left" Margin="40,135,0,0" VerticalAlignment="Top"/>
+        <Label Content="Фамилия" HorizontalAlignment="Left" Margin="40,93,0,0" VerticalAlignment="Top"/>
+        <Label Content="Отчество" HorizontalAlignment="Left" Margin="40,177,0,0" VerticalAlignment="Top"/>
+        <Label Content="Группа" HorizontalAlignment="Left" Margin="40,208,0,0" VerticalAlignment="Top"/>
+        <Label Content="Пол" HorizontalAlignment="Left" Margin="40,239,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbName" HorizontalAlignment="Left" Height="23" Margin="124,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Background="#FFC79062"/>
+        <TextBox x:Name="tbSurn" HorizontalAlignment="Left" Height="23" Margin="124,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Background="#FFC79062"/>
+        <TextBox x:Name="tbPart" HorizontalAlignment="Left" Height="23" Margin="124,177,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Background="#FFC79062"/>
+        <TextBox x:Name="tbGro" HorizontalAlignment="Left" Height="23" Margin="124,211,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Background="#FFC79062"/>
+        <RadioButton x:Name="rb1" Content="Муж" HorizontalAlignment="Left" Margin="107,250,0,0" VerticalAlignment="Top" Background="#FFE6924C"/>
+        <RadioButton x:Name="rb2" Content="Жен" HorizontalAlignment="Left" Margin="208,250,0,0" VerticalAlignment="Top" Background="#FFE6924C"/>
+        <Button x:Name="btnGo" Content="К тесту" HorizontalAlignment="Left" Margin="40,291,0,0" VerticalAlignment="Top" Width="221" Click="btnGo_Click" Background="#FFE6924C"/>
+        <DataGrid x:Name="dsStudents" IsReadOnly="True" AutoGenerateColumns="False" Margin="287,120,28,155" Background="#FFE6924C" Visibility="Hidden">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding ID}" Header="ID" Width="25"/>
+                <DataGridTextColumn Binding="{Binding NameStudent}" Header="Que" Width="100"/>
+                <DataGridTextColumn Binding="{Binding SurnameStudent}" Header="Res" Width="100"/>
+                <DataGridTextColumn Binding="{Binding PatronymicStudent}" Header="Answer" Width="100"/>
+                <DataGridTextColumn Binding="{Binding Group}" Header="Answer" Width="100"/>
+                <DataGridTextColumn Binding="{Binding Gender}" Header="Answer" Width="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Заполнение анкеты" VerticalAlignment="Top" Height="24" Margin="333,0,305,0"/>
+
+    </Grid>
+</Page>

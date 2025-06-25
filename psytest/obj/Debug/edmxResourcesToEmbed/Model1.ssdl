@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище psychoModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Type" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Property">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Value" Type="int" Nullable="false" />
+    <Property Name="Min" Type="int" Nullable="false" />
+    <Property Name="IDResult" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Psychologist">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Patronymic" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IDAccount" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Question">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Text" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IDTest" Type="int" Nullable="false" />
+    <Property Name="IDProperty" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Result">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDStudent" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Patronymic" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Group" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Gender" Type="bit" Nullable="false" />
+    <Property Name="IDAccount" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Test">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IDPsychologist" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Type">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_account_Type">
+    <End Role="Type" Type="Self.Type" Multiplicity="1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Type">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Property_Result">
+    <End Role="Result" Type="Self.Result" Multiplicity="1" />
+    <End Role="Property" Type="Self.Property" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Result">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Property">
+        <PropertyRef Name="IDResult" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Psychologist_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="1" />
+    <End Role="Psychologist" Type="Self.Psychologist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Psychologist">
+        <PropertyRef Name="IDAccount" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Property">
+    <End Role="Property" Type="Self.Property" Multiplicity="1" />
+    <End Role="Question" Type="Self.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Property">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="IDProperty" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Test">
+    <End Role="Test" Type="Self.Test" Multiplicity="1" />
+    <End Role="Question" Type="Self.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Test">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="IDTest" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Result_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Result" Type="Self.Result" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Result">
+        <PropertyRef Name="IDStudent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="IDAccount" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Test_Psychologist">
+    <End Role="Psychologist" Type="Self.Psychologist" Multiplicity="1" />
+    <End Role="Test" Type="Self.Test" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Psychologist">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Test">
+        <PropertyRef Name="IDPsychologist" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище psychoModelContainer">
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Property" EntityType="Self.Property" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Psychologist" EntityType="Self.Psychologist" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Result" EntityType="Self.Result" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Test" EntityType="Self.Test" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_account_Type" Association="Self.FK_account_Type">
+      <End Role="Type" EntitySet="Type" />
+      <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Property_Result" Association="Self.FK_Property_Result">
+      <End Role="Result" EntitySet="Result" />
+      <End Role="Property" EntitySet="Property" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Psychologist_Account" Association="Self.FK_Psychologist_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Psychologist" EntitySet="Psychologist" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Property" Association="Self.FK_Question_Property">
+      <End Role="Property" EntitySet="Property" />
+      <End Role="Question" EntitySet="Question" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Test" Association="Self.FK_Question_Test">
+      <End Role="Test" EntitySet="Test" />
+      <End Role="Question" EntitySet="Question" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Result_Student" Association="Self.FK_Result_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="Result" EntitySet="Result" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Account" Association="Self.FK_Student_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Test_Psychologist" Association="Self.FK_Test_Psychologist">
+      <End Role="Psychologist" EntitySet="Psychologist" />
+      <End Role="Test" EntitySet="Test" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

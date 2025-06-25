@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище psychoModelContainer" CdmEntityContainer="psychoEntities1">
+    <EntitySetMapping Name="Account">
+      <EntityTypeMapping TypeName="psychoModel.Account">
+        <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Property">
+      <EntityTypeMapping TypeName="psychoModel.Property">
+        <MappingFragment StoreEntitySet="Property">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Min" ColumnName="Min" />
+          <ScalarProperty Name="IDResult" ColumnName="IDResult" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Psychologist">
+      <EntityTypeMapping TypeName="psychoModel.Psychologist">
+        <MappingFragment StoreEntitySet="Psychologist">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+          <ScalarProperty Name="IDAccount" ColumnName="IDAccount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Question">
+      <EntityTypeMapping TypeName="psychoModel.Question">
+        <MappingFragment StoreEntitySet="Question">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="IDTest" ColumnName="IDTest" />
+          <ScalarProperty Name="IDProperty" ColumnName="IDProperty" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Result">
+      <EntityTypeMapping TypeName="psychoModel.Result">
+        <MappingFragment StoreEntitySet="Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="IDStudent" ColumnName="IDStudent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Student">
+      <EntityTypeMapping TypeName="psychoModel.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+          <ScalarProperty Name="Group" ColumnName="Group" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="IDAccount" ColumnName="IDAccount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Test">
+      <EntityTypeMapping TypeName="psychoModel.Test">
+        <MappingFragment StoreEntitySet="Test">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IDPsychologist" ColumnName="IDPsychologist" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Type">
+      <EntityTypeMapping TypeName="psychoModel.Type">
+        <MappingFragment StoreEntitySet="Type">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Type1" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
